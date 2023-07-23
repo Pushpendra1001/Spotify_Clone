@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, unnecessary_this
 
 import 'package:flutter/material.dart';
+// import 'package:spotify_clone/views/album.dart';
 import 'package:spotify_clone/views/home.dart';
 import 'package:spotify_clone/views/library.dart';
 import 'package:spotify_clone/views/profile.dart';
@@ -14,7 +15,7 @@ class Tabbar extends StatefulWidget {
 }
 
 class TabbarState extends State<Tabbar> {
-  int _selected_state = 1;
+  int _selected_state = 0;
 
   @override
   Widget build(BuildContext context) {
