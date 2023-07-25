@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/navigation/albumCard.dart';
+import 'package:spotify_clone/navigation/bottombar.dart';
 import 'package:spotify_clone/navigation/globalCapsule.dart';
 
 class HomeView extends StatefulWidget {
@@ -13,6 +14,9 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      bottomNavigationBar: bottombar(),
       body: Stack(children: [
         Container(
           width: MediaQuery.of(context).size.width,

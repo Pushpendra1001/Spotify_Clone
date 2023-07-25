@@ -1,4 +1,6 @@
+// ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/navigation/bottombar.dart';
 import 'package:spotify_clone/navigation/song_item.dart';
 
 class album extends StatelessWidget {
@@ -7,10 +9,14 @@ class album extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      bottomNavigationBar: const bottombar(),
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            height: 630,
+            decoration: const BoxDecoration(
               color: Colors.teal,
             ),
           ),
@@ -21,14 +27,13 @@ class album extends StatelessWidget {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    // height: 500,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            Colors.black.withOpacity(0.11),
-                            Colors.black.withOpacity(0.22),
+                            Colors.black.withOpacity(0),
+                            Colors.black.withOpacity(0.12),
                             Colors.black.withOpacity(0.33),
                             Colors.black.withOpacity(0.44),
                             Colors.black.withOpacity(0.55),
@@ -41,7 +46,7 @@ class album extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         Container(
@@ -49,13 +54,14 @@ class album extends StatelessWidget {
                             borderRadius: BorderRadius.circular(23),
                           ),
                           child: Image(
-                            image: AssetImage('assets/images/album19.jpg'),
+                            image:
+                                const AssetImage('assets/images/album19.jpg'),
                             width: MediaQuery.of(context).size.width - 150,
                             height: MediaQuery.of(context).size.width - 150,
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Padding(
@@ -63,12 +69,12 @@ class album extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Kishor Kumar Best 90's Songs",
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Row(
                                 children: [
                                   Image.asset(
@@ -76,16 +82,16 @@ class album extends StatelessWidget {
                                     cacheWidth: 30,
                                     color: Colors.green,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
+                                  const Text(
                                     "Spotify",
                                     style: TextStyle(fontSize: 18),
                                   ),
                                 ],
                               ),
-                              Row(
+                              const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -94,7 +100,7 @@ class album extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(
+                                        padding: EdgeInsets.symmetric(
                                             vertical: 10, horizontal: 4),
                                         child: Text("1,623,233 Likes . 6h 48m"),
                                       ),
@@ -130,7 +136,7 @@ class album extends StatelessWidget {
                   ),
                   Container(
                     color: Colors.black,
-                    child: Column(
+                    child: const Column(
                       children: [
                         song_item(
                           image_name: 'assets/images/album21.webp',

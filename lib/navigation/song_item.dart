@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class song_item extends StatelessWidget {
@@ -20,7 +22,7 @@ class song_item extends StatelessWidget {
             cacheHeight: 70,
             cacheWidth: 70,
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Column(
@@ -30,8 +32,8 @@ class song_item extends StatelessWidget {
               Text(singer_name),
             ],
           ),
-          Spacer(),
-          Icon(Icons.more_horiz)
+          const Spacer(),
+          const Icon(Icons.more_horiz)
         ],
       ),
     );
