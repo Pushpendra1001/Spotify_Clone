@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:spotify_clone/navigation/tabbar.dart';
 import 'package:spotify_clone/views/home.dart';
 
 void main() {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const Scaffold(
-          body: HomeView(),
+          body: Tabbar(),
         ));
   }
 }

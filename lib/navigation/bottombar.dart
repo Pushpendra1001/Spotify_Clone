@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class bottombar extends StatefulWidget {
   const bottombar({super.key});
@@ -12,6 +13,19 @@ class bottombar extends StatefulWidget {
 class _bottombarState extends State<bottombar> {
   bool audio_state = true;
   bool favourite_state = true;
+  Color playingColor = Colors.teal;
+  late AudioPlayer _player;
+  late AudioCache cache;
+
+  Duration position = new Duration();
+  Duration musicLength = new Duration();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _player = AudioPlayer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +36,7 @@ class _bottombarState extends State<bottombar> {
     miniplayer() {
       return AnimatedContainer(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color.fromARGB(255, 137, 31, 23),
-        ),
+            borderRadius: BorderRadius.circular(12), color: playingColor),
         duration: const Duration(milliseconds: 500),
         height: 60,
         width: MediaQuery.of(context).size.width,
@@ -70,16 +82,30 @@ class _bottombarState extends State<bottombar> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
+              InkWell(
+                onTap: () {},
+                child: IconButton(
+                  onPressed: () {
                     setState(() {
                       audio_state = !audio_state;
+                      if (audio_state == false) {
+                        playingColor = const Color.fromARGB(255, 180, 38, 28);
+                      } else {
+                        playingColor = const Color.fromARGB(255, 117, 23, 17);
+                      }
                     });
+
+                    if (audio_state == false) {
+                      _player.play(
+                        AssetSource('mysound.mp3'),
+                      );
+                    } else {
+                      _player.pause();
+                    }
                   },
-                  child: Icon(
+                  icon: Icon(
                     audio_state == false ? Icons.pause : Icons.play_arrow,
+                    color: Colors.white,
                   ),
                 ),
               ),

@@ -16,7 +16,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: bottombar(),
+      // bottomNavigationBar: bottombar(),
       body: Stack(children: [
         Container(
           width: MediaQuery.of(context).size.width,
