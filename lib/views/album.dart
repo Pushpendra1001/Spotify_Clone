@@ -1,17 +1,93 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
-import 'package:spotify_clone/navigation/bottombar.dart';
 import 'package:spotify_clone/navigation/song_item.dart';
 
 class album extends StatelessWidget {
-  const album({super.key});
+  final String cover_name;
+  final String cover_image;
 
+  Widget song_list() {
+    if (cover_name == "Coders") {
+      return Column(
+        children: [
+          song_item(
+            image_name: 'assets/images/album21.webp',
+            song_name: 'Bheegi Bheegi Raaton Mein ',
+            singer_name: 'akshay Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album22.webp',
+            song_name: ' Tere Bina Zindagi Se',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album23.webp',
+            song_name: 'Humein Tumse Pyar Kitna',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album24.webp',
+            song_name: 'O Mere Dil Ke Chain',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album25.webp',
+            song_name: 'Athma rama',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album19.jpg',
+            song_name: 'Dekha Ek Khwaab',
+            singer_name: 'Kishor Kumar',
+          ),
+        ],
+      );
+    } else {
+      return Column(
+        children: [
+          song_item(
+            image_name: 'assets/images/album21.webp',
+            song_name: 'rato Mein ',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album22.webp',
+            song_name: ' Tere Bina Zindagi Se',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album23.webp',
+            song_name: 'Humein Tumse Pyar Kitna',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album24.webp',
+            song_name: 'O Mere Dil Ke Chain',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album25.webp',
+            song_name: 'Athma rama',
+            singer_name: 'Kishor Kumar',
+          ),
+          song_item(
+            image_name: 'assets/images/album19.jpg',
+            song_name: 'Dekha Ek Khwaab',
+            singer_name: 'Kishor Kumar',
+          ),
+        ],
+      );
+    }
+  }
+
+  const album({super.key, required this.cover_name, required this.cover_image});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: const bottombar(),
+      // bottomNavigationBar: const bottombar(),
+      // bottomNavigationBar: tabbar(),
       body: Stack(
         children: [
           Container(
@@ -54,8 +130,7 @@ class album extends StatelessWidget {
                             borderRadius: BorderRadius.circular(23),
                           ),
                           child: Image(
-                            image:
-                                const AssetImage('assets/images/album19.jpg'),
+                            image: AssetImage(cover_image),
                             width: MediaQuery.of(context).size.width - 150,
                             height: MediaQuery.of(context).size.width - 150,
                             fit: BoxFit.cover,
@@ -69,10 +144,13 @@ class album extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "Kishor Kumar Best 90's Songs",
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              Center(
+                                child: Text(
+                                  cover_name,
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                               const SizedBox(height: 10),
                               Row(
@@ -134,43 +212,7 @@ class album extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    color: Colors.black,
-                    child: const Column(
-                      children: [
-                        song_item(
-                          image_name: 'assets/images/album21.webp',
-                          song_name: 'Bheegi Bheegi Raaton Mein ',
-                          singer_name: 'Kishor Kumar',
-                        ),
-                        song_item(
-                          image_name: 'assets/images/album22.webp',
-                          song_name: ' Tere Bina Zindagi Se',
-                          singer_name: 'Kishor Kumar',
-                        ),
-                        song_item(
-                          image_name: 'assets/images/album23.webp',
-                          song_name: 'Humein Tumse Pyar Kitna',
-                          singer_name: 'Kishor Kumar',
-                        ),
-                        song_item(
-                          image_name: 'assets/images/album24.webp',
-                          song_name: 'O Mere Dil Ke Chain',
-                          singer_name: 'Kishor Kumar',
-                        ),
-                        song_item(
-                          image_name: 'assets/images/album25.webp',
-                          song_name: 'Athma rama',
-                          singer_name: 'Kishor Kumar',
-                        ),
-                        song_item(
-                          image_name: 'assets/images/album19.jpg',
-                          song_name: 'Dekha Ek Khwaab',
-                          singer_name: 'Kishor Kumar',
-                        ),
-                      ],
-                    ),
-                  )
+                  Container(color: Colors.black, child: song_list())
                 ],
               ),
             ),

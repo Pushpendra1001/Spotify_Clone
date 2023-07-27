@@ -17,12 +17,8 @@ class _bottombarState extends State<bottombar> {
   late AudioPlayer _player;
   late AudioCache cache;
 
-  Duration position = new Duration();
-  Duration musicLength = new Duration();
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _player = AudioPlayer();
   }

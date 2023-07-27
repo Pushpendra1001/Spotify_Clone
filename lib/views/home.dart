@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/navigation/albumCard.dart';
-import 'package:spotify_clone/navigation/bottombar.dart';
 import 'package:spotify_clone/navigation/globalCapsule.dart';
 
 class HomeView extends StatefulWidget {
@@ -14,6 +13,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBody: true,
       extendBodyBehindAppBar: true,
       // bottomNavigationBar: bottombar(),
@@ -21,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 0.6,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xFf1C7A74),
           ),
         ),
@@ -53,7 +53,9 @@ class _HomeViewState extends State<HomeView> {
                         Text(
                           "Good Evening Pushpendra",
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
                         Spacer(),
                         Padding(
@@ -113,12 +115,12 @@ class _HomeViewState extends State<HomeView> {
                       child: Row(
                         children: [
                           albumCard(
-                            image: 'assets/images/album18.jpg',
-                            label: "Kishor Kumar",
+                            image: 'assets/images/album31.jpg',
+                            label: "Coders",
                           ),
                           albumCard(
-                            image: 'assets/images/album20.jpg',
-                            label: "Athma Ramma",
+                            image: 'assets/images/album18.jpg',
+                            label: "Kishor Kumar",
                           ),
                           albumCard(
                             image: 'assets/images/album3.jpg',

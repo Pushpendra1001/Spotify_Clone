@@ -14,12 +14,13 @@ class albumCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.0),
         child: InkWell(
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const album(),
+                builder: (context) =>
+                    album(cover_name: label, cover_image: image),
               )),
           child: Column(
             children: [
