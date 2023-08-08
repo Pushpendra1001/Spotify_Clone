@@ -2,6 +2,7 @@
 // ignore_for_file: file_names, duplicate_ignore
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GlobalCapsule extends StatelessWidget {
   final String image, label;
@@ -29,7 +30,11 @@ class GlobalCapsule extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            Text(label)
+            Text(
+              label,
+              style: GoogleFonts.sourceSansPro(
+                  fontWeight: FontWeight.bold, letterSpacing: 1.5),
+            )
           ],
         ),
       ),

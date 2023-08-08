@@ -1,90 +1,135 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/navigation/song_item.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-class album extends StatelessWidget {
+class album extends StatefulWidget {
   final String cover_name;
   final String cover_image;
+  final audio_state = false;
 
-  Widget song_list() {
-    if (cover_name == "Coders") {
-      return Column(
-        children: [
-          song_item(
-            image_name: 'assets/images/album21.webp',
-            song_name: 'Bheegi Bheegi Raaton Mein ',
-            singer_name: 'akshay Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album22.webp',
-            song_name: ' Tere Bina Zindagi Se',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album23.webp',
-            song_name: 'Humein Tumse Pyar Kitna',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album24.webp',
-            song_name: 'O Mere Dil Ke Chain',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album25.webp',
-            song_name: 'Athma rama',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album19.jpg',
-            song_name: 'Dekha Ek Khwaab',
-            singer_name: 'Kishor Kumar',
-          ),
-        ],
-      );
-    } else {
-      return Column(
-        children: [
-          song_item(
-            image_name: 'assets/images/album21.webp',
-            song_name: 'rato Mein ',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album22.webp',
-            song_name: ' Tere Bina Zindagi Se',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album23.webp',
-            song_name: 'Humein Tumse Pyar Kitna',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album24.webp',
-            song_name: 'O Mere Dil Ke Chain',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album25.webp',
-            song_name: 'Athma rama',
-            singer_name: 'Kishor Kumar',
-          ),
-          song_item(
-            image_name: 'assets/images/album19.jpg',
-            song_name: 'Dekha Ek Khwaab',
-            singer_name: 'Kishor Kumar',
-          ),
-        ],
+  const album({super.key, required this.cover_name, required this.cover_image});
+
+  @override
+  State<album> createState() => _albumState();
+}
+
+class _albumState extends State<album> {
+  times() {
+    for (var i = 1; i < musicList.length;) {
+      return song_item(
+        image_name: musicList[i]['image_name'],
+        song_name: musicList[i]['song_name'],
+        singer_name: musicList[i]['singer_name'],
       );
     }
   }
 
-  const album({super.key, required this.cover_name, required this.cover_image});
+  // late AudioPlayer _player;
+
+  // @override
+  // void initState() {
+  //    //   _player = audioPlayer;
+  // }
+
+  List musicList = [
+    {
+      'song_name': 'Tu Tu hai wahi din nai',
+      'singer_name': 'Kishor Kumar',
+      'image_name': 'assets/images/album1.jpg',
+      'song_url': 'Tu_Tu_hai_wahi_dil_ne.mp3'
+    },
+    {
+      'song_name': 'Neele Neele Ambar',
+      'singer_name': 'Kishor Kumar',
+      'image_name': 'assets/images/album5.jpeg',
+      'song_url': 'Neele_Neele_Ambar.mp3'
+    },
+    {
+      'song_name': 'Chura Liya hai tumnai ',
+      'singer_name': 'Kishor Kumar',
+      'image_name': 'assets/images/album21.webp',
+      'song_url': 'Chura_liya_hai_tumnai.mp3'
+    },
+    {
+      'song_name': 'Tere Bina Zindagi Se',
+      'singer_name': 'Kishor Kumar',
+      'image_name': 'assets/images/album22.webp',
+      'song_url': 'Tere_Bina_Zindagi_Se.mp3'
+    },
+    {
+      'song_name': 'Humein Tumse Pyar Kitna',
+      'singer_name': 'Kishor Kumar',
+      'image_name': 'assets/images/album23.webp',
+      'song_url': 'Humen_Tumse_Pyar.mp3'
+    },
+    {
+      'song_name': 'O Mere Dil Ke Chain',
+      'singer_name': 'Kishor Kumar',
+      'image_name': 'assets/images/album24.webp',
+      'song_url': 'O_Mere_Dil_Chain.mp3'
+    },
+    {
+      'song_name': 'Dekha Ek Khwaab',
+      'singer_name': 'Kishor Kumar',
+      'image_name': 'assets/images/album24.webp',
+      'song_url': 'Dekha_Ek_Khwab.mp3'
+    },
+    {
+      'song_name': 'Bheegi Bheegi Raaton Mein',
+      'singer_name': 'Kishor Kumar',
+      'image_name': 'assets/images/album24.webp',
+      'song_url': 'Bheegi_Bheegi_Raaton_Mein.mp3'
+    }
+  ];
+
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  bool isPlaying = false;
+
+  String currentSong = "";
+
+  void playMusic(String url) async {
+    // if (isPlaying == true) {
+    //   audioPlayer.pause();
+    //   audioPlayer.play(AssetSource(url));
+    //   currentSong = url;
+    // } else if (!isPlaying == false) {
+    //   setState(
+    //     () {
+    //       isPlaying = true;
+    //     },
+    //   );
+    //   audioPlayer.play(AssetSource(url));
+    // }
+    audioPlayer.play(AssetSource(url));
+  }
+
+  Widget song_list() {
+    return Column(
+      children: [
+        for (var i = 0; i < musicList.length; i++)
+          InkWell(
+            onTap: () {
+              // playMusic(musicList[i]['song_url']);
+              audioPlayer.play(AssetSource(musicList[i]['song_url']));
+            },
+            child: song_item(
+              image_name: musicList[i]['image_name'],
+              song_name: musicList[i]['song_name'],
+              singer_name: musicList[i]['singer_name'],
+            ),
+          ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+
       extendBodyBehindAppBar: true,
       // bottomNavigationBar: const bottombar(),
       // bottomNavigationBar: tabbar(),
@@ -130,7 +175,7 @@ class album extends StatelessWidget {
                             borderRadius: BorderRadius.circular(23),
                           ),
                           child: Image(
-                            image: AssetImage(cover_image),
+                            image: AssetImage(widget.cover_image),
                             width: MediaQuery.of(context).size.width - 150,
                             height: MediaQuery.of(context).size.width - 150,
                             fit: BoxFit.cover,
@@ -146,8 +191,8 @@ class album extends StatelessWidget {
                             children: [
                               Center(
                                 child: Text(
-                                  cover_name,
-                                  style: TextStyle(
+                                  widget.cover_name,
+                                  style: const TextStyle(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -169,11 +214,11 @@ class album extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const Row(
+                              Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
+                                  const Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -198,9 +243,15 @@ class album extends StatelessWidget {
                                     ],
                                   ),
                                   Positioned(
-                                    child: Icon(
-                                      Icons.play_circle_fill_sharp,
-                                      size: 80,
+                                    child: IconButton(
+                                      icon: const Icon(
+                                          Icons.play_circle_fill_sharp),
+                                      onPressed: () {
+                                        if (widget.audio_state == true) {
+                                          audioPlayer.pause();
+                                        } else {}
+                                      },
+                                      iconSize: 60,
                                       color: Colors.green,
                                     ),
                                   ),

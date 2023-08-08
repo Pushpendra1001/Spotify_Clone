@@ -1,13 +1,11 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names
+// ignore_for_file: camel_case_types, non_constant_identifier_names, unused_local_variable, unnecessary_this
 
-import 'package:spotify_clone/views/album.dart';
 import 'package:spotify_clone/views/home.dart';
 import 'package:spotify_clone/views/library.dart';
-import 'package:spotify_clone/views/profile.dart';
+import 'package:spotify_clone/views/premium.dart';
 import 'package:spotify_clone/views/search.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:spotify_clone/views/song.dart';
 
 class tabbar extends StatefulWidget {
   const tabbar({super.key});
@@ -20,7 +18,6 @@ class _tabbarState extends State<tabbar> {
   bool audio_state = true;
   bool favourite_state = true;
   Color playingColor = Colors.teal;
-  late AudioPlayer _player;
   late AudioCache cache;
   int _selected_state = 0;
   List<Widget> Pages = [
@@ -29,13 +26,18 @@ class _tabbarState extends State<tabbar> {
     const library_view(),
     const profile_view(),
     // const album(),
-    const song(),
+    // const song(),
   ];
 
   @override
   void initState() {
     super.initState();
-    _player = AudioPlayer();
+    int slider_value = 0;
+    // void dispose() {
+    //   _player.stop(); // Stop the audio player.
+    //   _player.dispose(); // Dispose the audio player to release resources.
+    //   super.dispose();
+    // }
   }
 
   @override
@@ -45,7 +47,7 @@ class _tabbarState extends State<tabbar> {
         scaffoldBackgroundColor: Colors.black,
         brightness: Brightness.dark,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.white10,
+          backgroundColor: Colors.transparent,
           type: BottomNavigationBarType.fixed,
           selectedLabelStyle: TextStyle(fontSize: 12),
           unselectedItemColor: Colors.white38,
@@ -60,22 +62,15 @@ class _tabbarState extends State<tabbar> {
           children: [
             renderView(0, const HomeView()),
             renderView(1, const search_view()),
-            // renderView(2, const album()),
+            renderView(2, const library_view()),
             renderView(3, const profile_view()),
             // renderView(4, const album()),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                      // color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(40)),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-                    child: miniplayer(),
-                  ),
-                ),
+                    // child: miniplayer(),
+                    ),
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -155,89 +150,5 @@ class _tabbarState extends State<tabbar> {
 
 // function start
 
-  miniplayer() {
-    return AnimatedContainer(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12), color: playingColor),
-      duration: const Duration(milliseconds: 500),
-      height: 60,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox(
-              width: 10,
-            ),
-            Image.asset('assets/images/album18.jpg'),
-            const SizedBox(
-              width: 20,
-            ),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Dekha ek khwab Jo ..."),
-                Text(
-                  "Kishor Kumar",
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ],
-            ),
-            const Spacer(),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Icon(Icons.bluetooth_connected),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    favourite_state = !favourite_state;
-                  });
-                },
-                child: Icon(
-                  favourite_state == false
-                      ? Icons.favorite_outline
-                      : Icons.favorite,
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    audio_state = !audio_state;
-                    if (audio_state == false) {
-                      playingColor = const Color.fromARGB(255, 180, 38, 28);
-                    } else {
-                      playingColor = const Color.fromARGB(255, 117, 23, 17);
-                    }
-                  });
-
-                  if (audio_state == false) {
-                    _player.play(
-                      AssetSource('code.mp3'),
-                    );
-                  } else {
-                    _player.pause();
-                  }
-                },
-                icon: Icon(
-                  audio_state == false ? Icons.pause : Icons.play_arrow,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            // SizedBox(
-            //   width: 10,
-            // ),
-          ],
-        ),
-      ),
-    );
-  }
 // function close
 }

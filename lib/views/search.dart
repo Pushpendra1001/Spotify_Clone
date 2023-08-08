@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:spotify_clone/navigation/search_Card.dart';
 
 // ignore: camel_case_types
@@ -14,15 +13,15 @@ class search_view extends StatefulWidget {
 class _search_viewState extends State<search_view> {
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
           body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -35,31 +34,34 @@ class _search_viewState extends State<search_view> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   decoration: InputDecoration(
                     fillColor: Colors.red,
-                    prefixIcon: Icon(Icons.search),
-                    label: Text(
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: () {},
+                    ),
+                    label: const Text(
                       "What do you want to listen to ?",
                       style: TextStyle(color: Colors.white),
                     ),
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(12))),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Column(
+              const Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
